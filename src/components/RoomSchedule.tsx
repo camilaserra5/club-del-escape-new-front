@@ -16,9 +16,11 @@ interface Game {
 const RoomSchedule = (props: Game) => {
   return (
     <>
-      <h4>{props.title}</h4>
-      <div className="flex items-center justify-between">
-        <div className="carousel-item pr-4 w-48 h-48 ">
+      <h4 className="text-white text-left text-xl font-bold align-left mt-5 ml-4">
+        {props.title}
+      </h4>
+      <div className="flex items-center justify-between ml-4 mr-2">
+        <div className="carousel-item border-solid border-2 mr-4 h-48 ">
           <img src={"/juegos/" + props.img} alt="Burger" />
         </div>
         <div className="carousel rounded-box bg-stone-800">

@@ -8,6 +8,7 @@ import RoomSchedule from "../components/RoomSchedule";
 import data from "../data/data.json";
 import Moment from "moment";
 import React from "react";
+import MobileRoomSchedule from "../components/MobileRoomSchedule";
 
 const Booking = () => {
   let { location } = useParams();
@@ -19,7 +20,9 @@ const Booking = () => {
       <div className="mt-28 mb-28  relative">
         <div className="flex justify-center">
           <div className="mx-auto">
-            <h1 className="text-xl text-white m-2 text-center">Estás reservando en {location}</h1>
+            <h1 className="text-xl text-white m-2 text-center">
+              Estás reservando en {location}
+            </h1>
 
             <div className="inline-flex rounded-md shadow-sm" role="group">
               <button
@@ -64,7 +67,13 @@ const Booking = () => {
             ))}
         </div>
 
-        <div className="text-center block md:hidden">No - falta</div>
+        <div className="text-center block md:hidden">
+          {data
+            .filter((game) => game.local === location?.toUpperCase())
+            .map((game) => (
+              <MobileRoomSchedule {...game} />
+            ))}
+        </div>
       </div>
     </Layout>
   );
