@@ -1,25 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/Landing";
+import NotFound from "./pages/NotFound";
+import Booking from "./pages/Booking";
+import FinishBooking from "./pages/FinishBooking";
+import Success from "./pages/Success";
+import Pending from "./pages/Pending";
+import Failure from "./pages/Failure";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/book/:location" element={<Booking />} />
+        <Route path="/finish-booking" element={<FinishBooking />} />
+        <Route path="/success" element={<Success />} />
+        <Route path="/pending" element={<Pending />} />
+        <Route path="/failure" element={<Failure />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
   );
 }
 
