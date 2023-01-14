@@ -5,7 +5,7 @@ const Layout = (props: any) => {
   return (
     <>
       <Header />
-      <div className="flex flex-col min-h-screen bg-stone-900">{props.children}</div>
+      <div className="flex flex-col min-h-screen bg-black">{props.children}</div>
       <Footer />
     </>
   );

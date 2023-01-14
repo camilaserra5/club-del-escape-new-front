@@ -4,7 +4,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-stone-800 border-orange-600 px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b-4">
+    <nav className="shadow-md bg-black border-orange-600 px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b-4">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <a href="/#" className="flex items-center">
           <img
@@ -19,14 +19,14 @@ const Header = () => {
         <div className="flex md:order-2">
           <button
             type="button"
-            className="focus:ring-orange-100 text-white bg-amber-700 hover:bg-amber-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0"
+            className="focus:ring-orange-100 text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0"
           >
             Reservar
           </button>
           <button
             onClick={() => setIsOpen(!isOpen)}
             type="button"
-            className="text-gray-500 hover:bg-gray-700 focus:ring-gray-600 inline-flex items-center p-2 text-sm rounded-lg md:hidden focus:outline-none focus:ring-2"
+            className="text-gray-200 hover:bg-gray-700 focus:ring-gray-600 inline-flex items-center p-2 text-sm rounded-lg md:hidden focus:outline-none focus:ring-2"
             aria-controls="navbar-sticky"
             aria-expanded={isOpen}
           >
@@ -56,7 +56,7 @@ const Header = () => {
             <li>
               <a
                 href="/juegos"
-                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-200 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
               >
                 Juegos
               </a>
@@ -64,7 +64,7 @@ const Header = () => {
             <li>
               <a
                 href="/eventos"
-                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-200 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
               >
                 Eventos
               </a>
@@ -72,7 +72,7 @@ const Header = () => {
             <li>
               <a
                 href="/encontranos"
-                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-200 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
               >
                 Encontranos
               </a>
@@ -80,7 +80,7 @@ const Header = () => {
             <li>
               <a
                 href="/gift-card"
-                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-200 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
               >
                 Gift Card
               </a>
@@ -88,7 +88,7 @@ const Header = () => {
             <li>
               <a
                 href="/faqs"
-                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-400 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                className="block py-2 pl-3 pr-4 rounded md:p-0 md:hover:text-white text-gray-200 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
               >
                 FAQs
               </a>
