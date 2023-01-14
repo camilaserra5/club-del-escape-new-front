@@ -26,7 +26,7 @@ const FinishBooking = () => {
   useEffect(() => {
     console.log("holis");
     axios
-      .post("http://localhost:8080/mercadopago", {
+      .post("https://club-del-escape-new-back.vercel.app/mercadopago", {
         title: "Seña: " + prod?.title,
         price: 1,
         description: "Seña para club del escape"

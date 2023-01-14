@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faForward, faBackward, faB } from "@fortawesome/free-solid-svg-icons";
+import { faForward, faBackward } from "@fortawesome/free-solid-svg-icons";
 
 import Layout from "../components/Layout";
 import RoomSchedule from "../components/RoomSchedule";
