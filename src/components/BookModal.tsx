@@ -29,7 +29,7 @@ const BookModal = (props: TextBooking) => {
   return (
     <>
       <button
-        className="px-3 py-2 text-s font-medium text-white bg-orange-600 rounded-lg"
+        className="px-3 py-2 text-xs font-medium text-white bg-orange-600 rounded-lg"
         onClick={() => setShowModal(true)}
       >
         {props.text}

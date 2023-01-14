@@ -71,7 +71,7 @@ const Booking = () => {
           {data
             .filter((game) => game.local === location?.toUpperCase())
             .map((game) => (
-              <RoomSchedule {...game} />
+              <MobileRoomSchedule {...game} />
             ))}
         </div>
       </div>
