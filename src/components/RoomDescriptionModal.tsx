@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChild,
-  faStarHalf,
+  faStar,
   faClock,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
@@ -79,9 +79,9 @@ const RoomDescriptionModal = (props: Game) => {
                     {props.description}
                   </p>
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col align-center justify-center items-center mb-4">
                   <div>
-                    <div className="flex flex-row flex-initial w-2">
+                    <div className="flex flex-row flex-initial w-auto">
                       <div>
                         <FontAwesomeIcon
                           icon={faUsers}
@@ -92,10 +92,10 @@ const RoomDescriptionModal = (props: Game) => {
                     </div>
                   </div>
                   <div>
-                    <div className="flex flex-row flex-initial w-2">
+                    <div className="flex flex-row flex-initial w-auto">
                       <div className="">
                         <FontAwesomeIcon
-                          icon={faStarHalf}
+                          icon={faStar}
                           className="ml-2 mr-3 text-amber-300"
                         />
                       </div>
@@ -103,7 +103,7 @@ const RoomDescriptionModal = (props: Game) => {
                     </div>
                   </div>
                   <div>
-                    <div className="flex flex-row flex-initial w-2">
+                    <div className="flex flex-row flex-initial w-auto">
                       <div className="">
                         <FontAwesomeIcon
                           icon={faChild}
@@ -114,7 +114,7 @@ const RoomDescriptionModal = (props: Game) => {
                     </div>
                   </div>
                   <div>
-                    <div className="flex flex-row flex-initial w-2 ">
+                    <div className="flex flex-row flex-initial w-auto">
                       <div >
                         <FontAwesomeIcon
                           icon={faClock}

@@ -24,10 +24,11 @@ const MercadoPago = (props: PrefId) => {
       script.setAttribute("data-width", "700");
       script.setAttribute("data-height", "600");
       script.setAttribute("data-iframe", "false");
-      script.setAttribute("data-iframe_label", "Pay with Mercado Pago");
+      script.setAttribute("data-button-label", "Ir a pagar");
       script.setAttribute("data-preference-id", preferenceId);
       const form = document.getElementById(FORM_ID);
-      form?.appendChild(script);
+      if (form?.children.length === 0)
+        form?.appendChild(script);
     }
   }, [preferenceId]);
 

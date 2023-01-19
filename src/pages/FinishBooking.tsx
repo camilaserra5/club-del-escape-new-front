@@ -6,6 +6,19 @@ import slots from "../data/slots.json";
 import React from "react";
 import MercadoPago from "../components/MercadoPago";
 import axios from "axios";
+import validator from "validator";
+
+const mercadoPagoButton = {
+  padding: "0 1.7142857142857142em",
+  fontFamily: '"Helvetica Neue", Arial, sans-serif',
+  fontSize: "0.875em",
+  lineHeight: "2.7142857142857144",
+  background: "#009ee3",
+  borderRadius: "0.2857142857142857em",
+  color: "#fff",
+  cursor: "pointer",
+  border: "0",
+};
 
 const FinishBooking = () => {
   const location = useLocation();
@@ -28,8 +41,8 @@ const FinishBooking = () => {
     axios
       .post("https://club-del-escape-new-back.vercel.app/mercadopago", {
         title: "Seña: " + prod?.title,
-        price: 1,
-        description: "Seña para club del escape"
+        price: 1000,
+        description: "Seña para club del escape",
       })
       .then((response) => {
         setPrefId(response.data.preferenceId);
@@ -42,7 +55,11 @@ const FinishBooking = () => {
   };
 
   useEffect(() => {
-    if (firstname && lastname && email && phone) setpagar(false);
+    if (firstname && lastname && validator.isEmail(email) && validator.isMobilePhone(phone)) {
+      setpagar(false);
+    } else {
+      setpagar(true);
+    }
   }, [firstname, lastname, email, phone]);
 
   return (
@@ -53,8 +70,7 @@ const FinishBooking = () => {
             <div className="py-12 bg-slate-800 md:py-24 mb-7">
               <div className="max-w-lg px-4 mx-auto space-y-8 lg:px-8">
                 <div className="flex items-center">
-                  <span className="w-10 h-10 bg-amber-700 rounded-full"></span>
-                  <h2 className="ml-4 text-3xl font-bold text-gray-100">
+                  <h2 className="text-3xl font-bold text-gray-100">
                     {prod?.title}
                   </h2>
                 </div>
@@ -76,9 +92,10 @@ const FinishBooking = () => {
                         <div className="ml-4">
                           <dl className="mt-0.5 space-y-px text-lg  text-gray-100">
                             <div>
-                              <dt className="inline">
-                                Sede {prod?.local} - av cordoba 123
-                              </dt>
+                              <dt className="inline">Sede {prod?.local}</dt>
+                            </div>
+                            <div>
+                              <dt className="inline">Av. cordoba adisj</dt>
                             </div>
                             <div>
                               <dt className="inline">
@@ -95,6 +112,14 @@ const FinishBooking = () => {
                         </div>
                       </li>
                     </ul>
+                    <iframe
+                      className="mt-9 invert w-full contrast-75"
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2725695075255!2d-58.42743848427838!3d-34.59726848046116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca7baf4da67b%3A0xad6e1d86c5c260e5!2sAv.%20C%C3%B3rdoba%204122%2C%20C1188AAU%20CABA!5e0!3m2!1ses-419!2sar!4v1674141441169!5m2!1ses-419!2sar"
+                      width="500"
+                      height="250"
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                    ></iframe>
                   </div>
                 </div>
               </div>
@@ -129,11 +154,10 @@ const FinishBooking = () => {
                       required
                     />
                   </div>
-
                   <div className="col-span-6 mb-6">
                     <label className="block mb-2 text-sm font-medium text-white">
                       Email
-                    </label>
+                    </label>{" "}
                     <input
                       type="email"
                       id="email"
@@ -143,7 +167,6 @@ const FinishBooking = () => {
                       required
                     />
                   </div>
-
                   <div className="col-span-6 mb-6">
                     <label className="block mb-2 text-sm font-medium text-white">
                       Telefono
@@ -157,7 +180,6 @@ const FinishBooking = () => {
                       required
                     />
                   </div>
-
                   <div className="col-span-6 flex items-start mb-6">
                     <div className="flex items-center h-5">
                       <input
@@ -173,7 +195,6 @@ const FinishBooking = () => {
                       niños (9 a 12 años).
                     </label>
                   </div>
-
                   <div className="col-span-6 flex items-start mb-6">
                     <div className="flex items-center h-5">
                       <input
@@ -188,9 +209,39 @@ const FinishBooking = () => {
                       Check this box if you want the game in english.
                     </label>
                   </div>
-
-                  <div className="col-span-6 flex items-start mb-6">
-                    {pagar ? null : <MercadoPago id={prefId} />}
+                  <div className="col-span-6 flex items-start text-white">
+                    <div
+                      className="flex items-center text-white text-xs font-bold px-2 py-3 bg-[#3d5685]"
+                      role="alert"
+                    >
+                      <svg
+                        className="fill-current w-4 h-4 mr-2"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M12.432 0c1.34 0 2.01.912 2.01 1.957 0 1.305-1.164 2.512-2.679 2.512-1.269 0-2.009-.75-1.974-1.99C9.789 1.436 10.67 0 12.432 0zM8.309 20c-1.058 0-1.833-.652-1.093-3.524l1.214-5.092c.211-.814.246-1.141 0-1.141-.317 0-1.689.562-2.502 1.117l-.528-.88c2.572-2.186 5.531-3.467 6.801-3.467 1.057 0 1.233 1.273.705 3.23l-1.391 5.352c-.246.945-.141 1.271.106 1.271.317 0 1.357-.392 2.379-1.207l.6.814C12.098 19.02 9.365 20 8.309 20z" />
+                      </svg>
+                      <p>
+                        Te redireccionaremos al sitio seguro de MercadoPago para
+                        que abones una seña de $1.000
+                      </p>
+                    </div>
+                  </div>
+                  <div className="col-span-6 flex items-start">
+                    {pagar ? (
+                      <button
+                        type="button"
+                        className="focus:outline-none disabled:opacity-25"
+                        style={mercadoPagoButton}
+                        disabled
+                      >
+                        Ir a pagar
+                      </button>
+                    ) : (
+                      <>
+                        <MercadoPago id={prefId} />
+                      </>
+                    )}
                   </div>
                 </form>
               </div>
@@ -201,4 +252,5 @@ const FinishBooking = () => {
     </Layout>
   );
 };
+
 export default FinishBooking;
