@@ -19,7 +19,7 @@ type TextBooking = {
 
 const BookModal = (props: TextBooking) => {
   const [showModal, setShowModal] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(2);
   const [price, setPrice] = useState(0);
 
   function translateToSpanish(word: string): string {
@@ -79,7 +79,14 @@ const BookModal = (props: TextBooking) => {
 
   const handleChange = (event: number) => {
     console.log(props.slot);
-    const value = Math.min(props.slot.numSeatsAvailable, event);
+    let min = 2;
+    let max = 6;
+    if (prod) {
+      min = prod.participantsMin;
+      max = prod.participantsMax;
+    }
+    const value = Math.max(min, Math.min(max, event));
+    // const value = Math.min(props.slot.numSeatsAvailable, event);
     props.slot.quantity = value;
     setQuantity(value);
   };
