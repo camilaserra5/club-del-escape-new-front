@@ -96,7 +96,7 @@ const FinishBooking = () => {
 
   useEffect(() => {
     const hold = async () => {
-      const url = `https://club-del-escape-new-back-kjecqcx45-pollococinado-gmailcom.vercel.app/hold-slot`;
+      const url = `https://club-del-escape-new-back.vercel.app/hold-slot`;
 
       const res = await fetch(url, {
         method: "POST",

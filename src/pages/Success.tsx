@@ -26,7 +26,7 @@ const Success = () => {
 
   useEffect(() => {
     const book = async () => {
-      const url = `https://club-del-escape-new-back-kjecqcx45-pollococinado-gmailcom.vercel.app/create-reservation`;
+      const url = `https://club-del-escape-new-back.vercel.app/create-reservation`;
       console.log(localStorage.getItem("eventId"));
       const res = await fetch(url, {
         method: "POST",

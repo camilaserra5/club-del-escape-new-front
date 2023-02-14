@@ -33,7 +33,7 @@ const Booking = () => {
       setLoading(true);
       const dateFrom = Moment(currentDay).format("YYYY-MM-DD");
       const dateTo = Moment(currentDay).add(1, "d").format("YYYY-MM-DD");
-      const url = `https://club-del-escape-new-back-kjecqcx45-pollococinado-gmailcom.vercel.app/slots?dateFrom=${dateFrom}&dateTo=${dateTo}`;
+      const url = `https://club-del-escape-new-back.vercel.app/slots?dateFrom=${dateFrom}&dateTo=${dateTo}`;
 
       const res = await fetch(url);
       const { data }: { data: Slot[] } = await res.json();
