@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
-import slots from "../data/slots.json";
 import data from "../data/data.json";
 import { Link } from "react-router-dom";
+import Moment from "moment";
+
+type Slot = {
+  productId: string;
+  eventId: string;
+  startTime: string;
+  endTime: string;
+  numSeatsAvailable: number;
+  quantity?: number;
+};
 
 type TextBooking = {
   text: string;
-  slotId: string;
+  slot: Slot;
 };
 
 const BookModal = (props: TextBooking) => {
@@ -13,18 +22,69 @@ const BookModal = (props: TextBooking) => {
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
 
+  function translateToSpanish(word: string): string {
+    const daysOfWeek: Record<string, string> = {
+      Monday: "Lunes",
+      Tuesday: "Martes",
+      Wednesday: "Miércoles",
+      Thursday: "Jueves",
+      Friday: "Viernes",
+      Saturday: "Sábado",
+      Sunday: "Domingo",
+    };
+
+    const months: Record<string, string> = {
+      January: "Enero",
+      February: "Febrero",
+      March: "Marzo",
+      April: "Abril",
+      May: "Mayo",
+      June: "Junio",
+      July: "Julio",
+      August: "Agosto",
+      September: "Septiembre",
+      October: "Octubre",
+      November: "Noviembre",
+      December: "Diciembre",
+    };
+
+    if (daysOfWeek[word]) {
+      return daysOfWeek[word];
+    } else if (months[word]) {
+      return months[word];
+    } else {
+      return "Not a valid input";
+    }
+  }
+
   useEffect(() => {
-    setPrice(quantity * 2);
+    switch (quantity) {
+      case 2:
+        setPrice(6000);
+        break;
+      case 3:
+        setPrice(8100);
+        break;
+      case 4:
+        setPrice(10000);
+        break;
+      case 5:
+        setPrice(11500);
+        break;
+      case 6:
+        setPrice(126000);
+        break;
+    }
   }, [quantity]);
 
   const handleChange = (event: number) => {
-    console.log(slot);
-    const value = Math.min(slot!.numSeatsAvailable, event);
+    console.log(props.slot);
+    const value = Math.min(props.slot.numSeatsAvailable, event);
+    props.slot.quantity = value;
     setQuantity(value);
   };
 
-  const slot = slots.json.data.find((slot) => slot.eventId === props.slotId);
-  const prod = data.find((p) => p.productId === slot?.productId);
+  const prod = data.find((p) => p.productId === props.slot.productId);
 
   return (
     <>
@@ -49,10 +109,18 @@ const BookModal = (props: TextBooking) => {
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
                   <p className="my-4 text-white text-lg leading-relaxed">
-                    {slot?.startTime}
+                    {translateToSpanish(
+                      Moment(props.slot.startTime).format("dddd")
+                    )}
+                    , {Moment(props.slot.startTime).format("DD")} de{" "}
+                    {translateToSpanish(
+                      Moment(props.slot.startTime).format("MMMM")
+                    )}{" "}
+                    {Moment(props.slot.startTime).format("YYYY")}
                   </p>
+
                   <p className="my-4 text-white text-lg leading-relaxed">
-                    {slot?.startTime}
+                    {Moment(props.slot.startTime).format("HH:mm")}
                   </p>
 
                   <div className="relative flex-auto flex justify-start">
@@ -84,7 +152,7 @@ const BookModal = (props: TextBooking) => {
                     </div>
                   </div>
                   <div className="relative flex-auto flex justify-start">
-                    <p className="text-white"> 
+                    <p className="text-white">
                       Precio:
                       <b className="text-white"> ${price} </b>
                     </p>
@@ -104,7 +172,7 @@ const BookModal = (props: TextBooking) => {
                     type="button"
                     onClick={() => setShowModal(false)}
                   >
-                    <Link to="/finish-booking" state={props.slotId}>
+                    <Link to="/finish-booking" state={props.slot}>
                       Ir a reservar
                     </Link>
                   </button>

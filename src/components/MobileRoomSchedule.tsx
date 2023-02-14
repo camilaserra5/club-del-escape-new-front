@@ -1,7 +1,13 @@
-import slots from "../data/slots.json";
 import Moment from "moment";
 import BookModal from "./BookModal";
-import CarouselItem from "./CarouselItem";
+
+interface Slot {
+  productId: string;
+  eventId: string;
+  startTime: string;
+  endTime: string;
+  numSeatsAvailable: number;
+}
 
 interface Game {
   title: string;
@@ -13,6 +19,7 @@ interface Game {
   difficulty: number;
   ageLimit: number;
   description: string;
+  slots: Slot[];
 }
 
 const MobileRoomSchedule = (props: Game) => {
@@ -26,10 +33,13 @@ const MobileRoomSchedule = (props: Game) => {
           <img src={"/juegos/" + props.img} alt="Burger" />
         </div>
         <div className="carousel rounded-box bg-stone-800">
-          {slots.json.data
+          {props.slots
             .filter((slot) => slot.productId === props.productId)
             .map((slot) => (
-              <div className="carousel-item bg-stone-900 border-orange-400 rounded-md m-1 flex items-center justify-center">
+              <div
+                key={slot.eventId}
+                className="carousel-item bg-stone-900 border-orange-400 rounded-md m-1 flex items-center justify-center"
+              >
                 <div className="h-24 justify-center flex items-center">
                   <div className="text-center mt-6 divide-y">
                     <div className="p-2">
@@ -44,10 +54,7 @@ const MobileRoomSchedule = (props: Game) => {
                     )}
                     {slot.numSeatsAvailable > 0 && (
                       <div className="p-2">
-                        <BookModal
-                          text={"Reservar"}
-                          slotId={slot.eventId}
-                        />
+                        <BookModal text={"Reservar"} slot={slot} />
                       </div>
                     )}
                   </div>

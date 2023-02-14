@@ -2,11 +2,11 @@ import Layout from "../components/Layout";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import data from "../data/data.json";
-import slots from "../data/slots.json";
 import React from "react";
 import MercadoPago from "../components/MercadoPago";
 import axios from "axios";
 import validator from "validator";
+import Moment from "moment";
 
 const mercadoPagoButton = {
   padding: "0 1.7142857142857142em",
@@ -20,24 +20,113 @@ const mercadoPagoButton = {
   border: "0",
 };
 
+type Slot = {
+  productId: string;
+  eventId: string;
+  startTime: string;
+  endTime: string;
+  numSeatsAvailable: number;
+  quantity: number;
+};
+
 const FinishBooking = () => {
   const location = useLocation();
-  const slotId = location.state;
+  const slot: Slot = location.state;
 
-  const slot = slots.json.data.find((slot) => slot.eventId === slotId);
   const prod = data.find((p) => p.productId === slot?.productId);
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [terms, setTerms] = useState("");
-  const [english, setEnglish] = useState("");
+  const [terms, setTerms] = useState(false);
+  const [english, setEnglish] = useState(false);
   const [pagar, setpagar] = useState(true);
   const [prefId, setPrefId] = useState("");
 
+  const [price, setPrice] = useState(0);
+  const [slotId, setSlotId] = useState("");
+
   useEffect(() => {
-    console.log("holis");
+    console.log(english);
+    console.log(terms);
+    localStorage.setItem("slotId", slotId);
+    localStorage.setItem("firstname", firstname);
+    localStorage.setItem("lastname", lastname);
+    localStorage.setItem("email", email);
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("terms", JSON.stringify(terms));
+    localStorage.setItem("english", JSON.stringify(english));
+  }, [slotId, firstname, lastname, email, phone, terms, english]);
+
+  function translateToSpanish(word: string): string {
+    const daysOfWeek: Record<string, string> = {
+      Monday: "Lunes",
+      Tuesday: "Martes",
+      Wednesday: "Miércoles",
+      Thursday: "Jueves",
+      Friday: "Viernes",
+      Saturday: "Sábado",
+      Sunday: "Domingo",
+    };
+
+    const months: Record<string, string> = {
+      January: "Enero",
+      February: "Febrero",
+      March: "Marzo",
+      April: "Abril",
+      May: "Mayo",
+      June: "Junio",
+      July: "Julio",
+      August: "Agosto",
+      September: "Septiembre",
+      October: "Octubre",
+      November: "Noviembre",
+      December: "Diciembre",
+    };
+
+    if (daysOfWeek[word]) {
+      return daysOfWeek[word];
+    } else if (months[word]) {
+      return months[word];
+    } else {
+      return "Not a valid input";
+    }
+  }
+
+  useEffect(() => {
+    const hold = async () => {
+      const url = `http://localhost:8080/hold-slot`;
+
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          eventId: slot.eventId,
+          participants: slot.quantity,
+          productId: slot.productId,
+        }),
+      });
+
+      const { slotId, price } = await res.json();
+      console.log(slotId);
+      setPrice(price);
+      setSlotId(slotId);
+      localStorage.setItem("eventId", slot.eventId);
+      localStorage.setItem("participants", slot.quantity.toString());
+      localStorage.setItem("productId", slot.productId);
+    };
+
+    hold();
+
+    return () => {
+      // this now gets called when the component unmounts
+    };
+  }, [slot]);
+
+  useEffect(() => {
     axios
       .post("https://club-del-escape-new-back.vercel.app/mercadopago", {
         title: "Seña: " + prod?.title,
@@ -55,7 +144,12 @@ const FinishBooking = () => {
   };
 
   useEffect(() => {
-    if (firstname && lastname && validator.isEmail(email) && validator.isMobilePhone(phone)) {
+    if (
+      firstname &&
+      lastname &&
+      validator.isEmail(email) &&
+      validator.isMobilePhone(phone)
+    ) {
       setpagar(false);
     } else {
       setpagar(true);
@@ -76,7 +170,7 @@ const FinishBooking = () => {
                 </div>
                 <div>
                   <p className="text-2xl font-medium tracking-tight text-gray-100">
-                    $3999.99 ARS
+                    ${price} ARS
                   </p>
                 </div>
                 <div>
@@ -99,14 +193,23 @@ const FinishBooking = () => {
                             </div>
                             <div>
                               <dt className="inline">
-                                Miércoles 11 enero 2023
+                                {translateToSpanish(
+                                  Moment(slot.startTime).format("dddd")
+                                )}
+                                , {Moment(slot.startTime).format("DD")} de{" "}
+                                {translateToSpanish(
+                                  Moment(slot.startTime).format("MMMM")
+                                )}{" "}
+                                {Moment(slot.startTime).format("YYYY")}
                               </dt>
                             </div>
                             <div>
-                              <dt className="inline">{slot?.startTime}</dt>
+                              <dt className="inline">{slot.startTime}</dt>
                             </div>
                             <div>
-                              <dt className="inline">5 jugadores</dt>
+                              <dt className="inline">
+                                {slot.quantity} jugadores
+                              </dt>
                             </div>
                           </dl>
                         </div>
@@ -118,6 +221,7 @@ const FinishBooking = () => {
                       width="500"
                       height="250"
                       loading="lazy"
+                      title="mapa"
                       referrerPolicy="no-referrer-when-downgrade"
                     ></iframe>
                   </div>
@@ -185,8 +289,8 @@ const FinishBooking = () => {
                       <input
                         id="terms"
                         type="checkbox"
-                        value={terms}
-                        onChange={(e) => setTerms(e.target.value)}
+                        checked={terms}
+                        onChange={(e) => setTerms(e.target.checked)}
                         className="w-4 h-4 border rounded focus:ring-3 bg-zinc-700 border-gray-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800"
                       />
                     </div>
@@ -200,8 +304,8 @@ const FinishBooking = () => {
                       <input
                         id="english"
                         type="checkbox"
-                        value={english}
-                        onChange={(e) => setEnglish(e.target.value)}
+                        checked={english}
+                        onChange={(e) => setEnglish(e.target.checked)}
                         className="w-4 h-4 border rounded focus:ring-3 bg-zinc-700 border-gray-500 focus:ring-blue-600 ring-offset-gray-800 focus:ring-offset-gray-800"
                       />
                     </div>

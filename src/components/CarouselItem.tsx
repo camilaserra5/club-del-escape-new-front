@@ -1,11 +1,17 @@
 import BookModal from "./BookModal";
 import Moment from "moment";
 
-type ScheduleProps = {
-  time: string;
-  difficulty: number;
-  slotId: string;
+type Slot = {
+  productId: string;
+  eventId: string;
+  startTime: string;
+  endTime: string;
   numSeatsAvailable: number;
+};
+
+type ScheduleProps = {
+  slot: Slot;
+  difficulty: number;
 };
 
 const CarouselItem = (props: ScheduleProps) => {
@@ -15,17 +21,17 @@ const CarouselItem = (props: ScheduleProps) => {
         <div className="text-center mt-6 m-4 divide-y ">
           <div className=" p-2">
             <p className="text-lg font-medium text-white ">
-              {Moment(props.time).format("HH:mm")}
+              {Moment(props.slot.startTime).format("HH:mm")}
             </p>
           </div>
-          {props.numSeatsAvailable === 0 && (
+          {props.slot.numSeatsAvailable === 0 && (
             <div className="text-white p-2">
               <p>OCUPADO</p>
             </div>
           )}
-          {props.numSeatsAvailable > 0 && (
+          {props.slot.numSeatsAvailable > 0 && (
             <div className="p-2">
-              <BookModal text={"Reservar sala"} slotId={props.slotId} />
+              <BookModal text={"Reservar sala"} slot={props.slot} />
             </div>
           )}
         </div>

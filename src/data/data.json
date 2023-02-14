@@ -35,7 +35,7 @@
   {
     "title": "La casa de la moneda",
     "img": "moneda.jpeg",
-    "productId":"41558LH7JWU1777FC2E463",
+    "productId": "41558LH7JWU1777FC2E463",
     "local": "COLEGIALES",
     "participantsMin": 2,
     "participantsMax": 6,
@@ -68,7 +68,7 @@
   {
     "title": "El juego del miedo",
     "img": "miedo.jpeg",
-    "productId":  "415586X47JA1777F930DAA",
+    "productId": "415586X47JA1777F930DAA",
     "local": "COLEGIALES",
     "participantsMin": 2,
     "participantsMax": 6,
@@ -97,17 +97,18 @@
     "difficulty": 7,
     "ageLimit": 9,
     "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
-  },{
-  "title": "El robo del siglo",
-  "img": "robo.jpeg",
-  "productId": "41558AAH4P31777F60C3C2",
-  "local": "PALERMO",
-  "participantsMin": 2,
-  "participantsMax": 6,
-  "difficulty": 7,
-  "ageLimit": 9,
-  "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
-},
+  },
+  {
+    "title": "El robo del siglo",
+    "img": "robo.jpeg",
+    "productId": "41558AAH4P31777F60C3C2",
+    "local": "PALERMO",
+    "participantsMin": 2,
+    "participantsMax": 6,
+    "difficulty": 7,
+    "ageLimit": 9,
+    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+  },
   {
     "title": "Maldita fuga",
     "img": "fuga.jpeg",

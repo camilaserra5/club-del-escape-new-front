@@ -1,5 +1,4 @@
 import CarouselItem from "./CarouselItem";
-import slots from "../data/slots.json";
 
 interface Game {
   title: string;
@@ -11,6 +10,14 @@ interface Game {
   difficulty: number;
   ageLimit: number;
   description: string;
+  slots: Slot[];
+}
+interface Slot {
+  productId: string;
+  eventId: string;
+  startTime: string;
+  endTime: string;
+  numSeatsAvailable: number;
 }
 
 const RoomSchedule = (props: Game) => {
@@ -25,15 +32,10 @@ const RoomSchedule = (props: Game) => {
         </div>
 
         <div className="overflow-x-auto flex items-center">
-        {slots.json.data
+          {props.slots
             .filter((slot) => slot.productId === props.productId)
             .map((slot) => (
-              <CarouselItem
-                time={slot.startTime}
-                difficulty={props.difficulty}
-                slotId={slot.eventId}
-                numSeatsAvailable={slot.numSeatsAvailable}
-              />
+              <CarouselItem slot={slot} difficulty={props.difficulty} />
             ))}
         </div>
       </div>
