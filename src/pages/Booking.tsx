@@ -105,7 +105,7 @@ const Booking = () => {
               </div>
             </div>
             <div
-              className="my-2 md:space-x-4 space-x-2 inline-flex rounded-md shadow-sm text-xl text-white m-2  md:mx-auto  mx-2 text-center justify-center "
+              className="my-2 md:space-x-4 space-x-1 inline-flex rounded-md shadow-sm text-xl text-white m-2  md:mx-auto  mx-1 text-center justify-center "
               role="group"
             >
               <button

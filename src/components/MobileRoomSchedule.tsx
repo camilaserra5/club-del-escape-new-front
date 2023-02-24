@@ -52,7 +52,7 @@ const MobileRoomSchedule = (props: Game) => {
         <div className="box-content items-center	flex-none snap-start w-16 border-solid border-2 mr-4">
           <img src={"/juegos/" + props.img} alt="Burger" />
         </div>
-        <div className="relative w-10/12 mx-auto">
+        <div className="relative w-9/12 mx-auto">
           <div
             ref={carouselRef}
             className="flex overflow-x-scroll scrollbar-hidden"

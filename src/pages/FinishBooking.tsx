@@ -62,7 +62,7 @@ const FinishBooking = () => {
 
   useEffect(() => {
     const hold = async () => {
-      const url = `http://localhost:8080/hold-slot`;
+      const url = `https://club-del-escape-new-back.vercel.app/hold-slot`;
 
       const res = await fetch(url, {
         method: "POST",
