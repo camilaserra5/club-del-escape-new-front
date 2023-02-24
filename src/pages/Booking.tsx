@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faForward, faBackward } from "@fortawesome/free-solid-svg-icons";
+import {
+  faForward,
+  faBackward,
+  faCalendar,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Layout from "../components/Layout";
 import RoomSchedule from "../components/RoomSchedule";
@@ -12,6 +16,7 @@ import MobileRoomSchedule from "../components/MobileRoomSchedule";
 import Loader from "../components/Loader";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { translateToSpanish } from "../utils/translate";
 
 interface Slot {
   productId: string;
@@ -50,83 +55,95 @@ const Booking = () => {
 
   return (
     <Layout>
-      <div className="mt-28 mb-28  relative ">
-        <div className="flex justify-center">
-          <div className="mx-auto flex flex-col items-center">
-            <h1 className="my-2 text-xl text-white m-2 text-center">
-              Estás reservando en {local}
-            </h1>
-            <button
-              type="button"
-              className="my-2  text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
-            >
-              {local === "colegiales" && (
-                // <a href="/book/palermo" onClick={() => setLocal("palermo")}>
-                //   Reservar en Palermo
-                // </a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setLocal("palermo");
-                  }}
-                >
-                  Reservar en Palermo
-                </button>
-              )}
-              {local === "palermo" && (
-                // <a
-                //   href="/book/colegiales"
-                //   onClick={() => setLocal("colegiales")}
-                // >
-                //   Reservar en Colegiales
-                // </a>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setLocal("colegiales");
-                  }}
-                >
-                  Reservar en Colegiales
-                </button>
-              )}
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5 ml-2 -mr-1"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
+      <div className="mt-28 mb-28   ">
+        <div className="">
+          <div className="mx-auto flex flex-col items-start justify-center ">
+            <div className="mx-auto space-x-5 flex flex-row items-center justify-center md:mr-auto  mr-5">
+              <h1
+                id="1"
+                className="my-2 md:text-xl text-lg text-white m-2 text-center justify-center mx-auto items-center"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </button>
-
-            <div className="my-2 inline-flex rounded-md shadow-sm" role="group">
+                Estás reservando en {local}
+              </h1>
+              <div
+                id="2"
+                className="my-2 ml-auto justify-center mx-auto text-white bg-black ring-2 ring-orange-600 font-medium rounded-lg text-sm px-2 py-1 text-center inline-flex items-center"
+              >
+                {local === "colegiales" && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLocal("palermo");
+                    }}
+                  >
+                    Reservar en Palermo
+                  </button>
+                )}
+                {local === "palermo" && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLocal("colegiales");
+                    }}
+                  >
+                    Reservar en Colegiales
+                  </button>
+                )}
+                <svg
+                  aria-hidden="true"
+                  className="w-5 h-5 ml-2 -mr-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div
+              className="my-2 md:space-x-4 space-x-2 inline-flex rounded-md shadow-sm text-xl text-white m-2  md:mx-auto  mx-2 text-center justify-center "
+              role="group"
+            >
               <button
-                type="button"
+                onClick={() => document.getElementById("datePicker")?.click()}
+                className="inline-flex items-center px-4 py-2 text-sm font-medium bg-orange-700 rounded-lg text-white"
+              >
+                <FontAwesomeIcon
+                  icon={faCalendar}
+                  className="ml-2 mr-3 text-amber-300"
+                />
+                Elegir fecha
+                <div className="w-0">
+                  <DatePicker
+                    id="datePicker"
+                    showPopperArrow={false}
+                    selected={currentDay}
+                    className="hidden w-2"
+                    onChange={(date: Date) => {
+                      setCurrentDay(date);
+                      document.getElementById("datePicker")?.click();
+                    }}
+                  />
+                </div>
+              </button>
+              <button
                 onClick={() => {
-                  new Date(Moment(currentDay).subtract(1, "d").format());
+                  setCurrentDay(
+                    new Date(Moment(currentDay).subtract(1, "d").format())
+                  );
                 }}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-l-lg hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                type="button"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium bg-orange-600 rounded-lg text-white"
               >
                 <FontAwesomeIcon
                   icon={faBackward}
                   className="ml-2 mr-3 text-amber-300"
                 />
-              </button>
-              <button
-                type="button"
-                className="inline-flex items-center px-4 py-2 text-sm font-medium  focus:z-10 focus:ring-2 focus:ring-gray-500  focus:text-white text-white hover:text-white bg-transparent border  border-white  hover:bg-gray-700 focus:bg-gray-700"
-              >
-                <DatePicker
-                  dateFormat="dd/MM/yyyy"
-                  className=" bg-transparent items-center text-center focus:z-10 focus:ring-2 focus:ring-gray-500  focus:text-white text-white hover:text-white hover:bg-gray-700 focus:bg-gray-700"
-                  selected={currentDay}
-                  onChange={(date: Date) => setCurrentDay(date)}
-                />
+                Día anterior
               </button>
               <button
                 type="button"
@@ -135,17 +152,24 @@ const Booking = () => {
                     new Date(Moment(currentDay).add(1, "d").format())
                   );
                 }}
-                className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-transparent border border-gray-900 rounded-r-md hover:bg-gray-900 hover:text-white focus:z-10 focus:ring-2 focus:ring-gray-500 focus:bg-gray-900 focus:text-white dark:border-white dark:text-white dark:hover:text-white dark:hover:bg-gray-700 dark:focus:bg-gray-700"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium bg-orange-600 rounded-lg text-white"
               >
                 <FontAwesomeIcon
                   icon={faForward}
                   className="ml-2 mr-3 text-amber-300"
                 />
+                Día siguiente
               </button>
             </div>
           </div>
         </div>
 
+        <h3 className="text-orange-400 text-left text-2xl font-bold align-left mt-5 ml-4">
+          {translateToSpanish(Moment(currentDay).format("dddd"))},{" "}
+          {Moment(currentDay).format("DD")} de{" "}
+          {translateToSpanish(Moment(currentDay).format("MMMM"))}{" "}
+          {Moment(currentDay).format("YYYY")}
+        </h3>
         {loading && <Loader />}
         <div
           className={
@@ -158,7 +182,6 @@ const Booking = () => {
               <RoomSchedule slots={slots} key={game.productId} {...game} />
             ))}
         </div>
-
         <div
           className={
             "text-center block md:hidden" + (loading ? " opacity-20" : "")

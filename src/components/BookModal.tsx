@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import data from "../data/data.json";
 import { Link } from "react-router-dom";
 import Moment from "moment";
+import { translateToSpanish } from "../utils/translate";
 
 type Slot = {
   productId: string;
@@ -17,45 +18,23 @@ type TextBooking = {
   slot: Slot;
 };
 
+interface Game {
+  title: string;
+  img: string;
+  productId: string;
+  local: string;
+  participantsMin: number;
+  participantsMax: number;
+  difficulty: number;
+  ageLimit: number;
+  description: string;
+}
+
 const BookModal = (props: TextBooking) => {
   const [showModal, setShowModal] = useState(false);
-  const [quantity, setQuantity] = useState(2);
+  const [quantity, setQuantity] = useState(0);
   const [price, setPrice] = useState(0);
-
-  function translateToSpanish(word: string): string {
-    const daysOfWeek: Record<string, string> = {
-      Monday: "Lunes",
-      Tuesday: "Martes",
-      Wednesday: "Miércoles",
-      Thursday: "Jueves",
-      Friday: "Viernes",
-      Saturday: "Sábado",
-      Sunday: "Domingo",
-    };
-
-    const months: Record<string, string> = {
-      January: "Enero",
-      February: "Febrero",
-      March: "Marzo",
-      April: "Abril",
-      May: "Mayo",
-      June: "Junio",
-      July: "Julio",
-      August: "Agosto",
-      September: "Septiembre",
-      October: "Octubre",
-      November: "Noviembre",
-      December: "Diciembre",
-    };
-
-    if (daysOfWeek[word]) {
-      return daysOfWeek[word];
-    } else if (months[word]) {
-      return months[word];
-    } else {
-      return "Not a valid input";
-    }
-  }
+  const [prod, setProd] = useState<Game | undefined>(undefined);
 
   useEffect(() => {
     switch (quantity) {
@@ -78,20 +57,24 @@ const BookModal = (props: TextBooking) => {
   }, [quantity]);
 
   const handleChange = (event: number) => {
-    console.log(props.slot);
     let min = 2;
     let max = 6;
     if (prod) {
+      console.log(prod.participantsMin);
       min = prod.participantsMin;
       max = prod.participantsMax;
     }
     const value = Math.max(min, Math.min(max, event));
-    // const value = Math.min(props.slot.numSeatsAvailable, event);
     props.slot.quantity = value;
     setQuantity(value);
   };
 
-  const prod = data.find((p) => p.productId === props.slot.productId);
+  // const prod = data.find((p) => p.productId === props.slot.productId);
+  useEffect(() => {
+    const product = data.find((p) => p.productId === props.slot.productId);
+    setProd(product);
+    if (product) setQuantity(product.participantsMin);
+  }, [props]);
 
   return (
     <>

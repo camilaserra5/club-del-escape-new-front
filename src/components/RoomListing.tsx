@@ -56,7 +56,7 @@ const RoomListing = (props: AppProps) => {
 
         <ul className="grid gap-4 mt-8 grid-cols-3 lg:grid-cols-5">
           {filteredData.map((game) => (
-            <li>
+            <li key={game.productId}>
               <a
                 href="/#"
                 onClick={(e) => {

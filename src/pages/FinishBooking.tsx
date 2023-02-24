@@ -7,6 +7,7 @@ import MercadoPago from "../components/MercadoPago";
 import axios from "axios";
 import validator from "validator";
 import Moment from "moment";
+import { translateToSpanish } from "../utils/translate";
 
 const mercadoPagoButton = {
   padding: "0 1.7142857142857142em",
@@ -59,44 +60,9 @@ const FinishBooking = () => {
     localStorage.setItem("english", JSON.stringify(english));
   }, [slotId, firstname, lastname, email, phone, terms, english]);
 
-  function translateToSpanish(word: string): string {
-    const daysOfWeek: Record<string, string> = {
-      Monday: "Lunes",
-      Tuesday: "Martes",
-      Wednesday: "Miércoles",
-      Thursday: "Jueves",
-      Friday: "Viernes",
-      Saturday: "Sábado",
-      Sunday: "Domingo",
-    };
-
-    const months: Record<string, string> = {
-      January: "Enero",
-      February: "Febrero",
-      March: "Marzo",
-      April: "Abril",
-      May: "Mayo",
-      June: "Junio",
-      July: "Julio",
-      August: "Agosto",
-      September: "Septiembre",
-      October: "Octubre",
-      November: "Noviembre",
-      December: "Diciembre",
-    };
-
-    if (daysOfWeek[word]) {
-      return daysOfWeek[word];
-    } else if (months[word]) {
-      return months[word];
-    } else {
-      return "Not a valid input";
-    }
-  }
-
   useEffect(() => {
     const hold = async () => {
-      const url = `https://club-del-escape-new-back.vercel.app/hold-slot`;
+      const url = `http://localhost:8080/hold-slot`;
 
       const res = await fetch(url, {
         method: "POST",
@@ -186,10 +152,12 @@ const FinishBooking = () => {
                         <div className="ml-4">
                           <dl className="mt-0.5 space-y-px text-lg  text-gray-100">
                             <div>
-                              <dt className="inline">Sede {prod?.local}</dt>
+                              <dt className="inline">
+                                Sede {prod?.localFriendlyName}
+                              </dt>
                             </div>
                             <div>
-                              <dt className="inline">Av. cordoba adisj</dt>
+                              <dt className="inline">{prod?.address}</dt>
                             </div>
                             <div>
                               <dt className="inline">
@@ -204,7 +172,9 @@ const FinishBooking = () => {
                               </dt>
                             </div>
                             <div>
-                              <dt className="inline">{slot.startTime}</dt>
+                              <dt className="inline">
+                                {Moment(slot.startTime).format("HH:MM")}
+                              </dt>
                             </div>
                             <div>
                               <dt className="inline">
@@ -215,15 +185,29 @@ const FinishBooking = () => {
                         </div>
                       </li>
                     </ul>
-                    <iframe
-                      className="mt-9 invert w-full contrast-75"
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2725695075255!2d-58.42743848427838!3d-34.59726848046116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca7baf4da67b%3A0xad6e1d86c5c260e5!2sAv.%20C%C3%B3rdoba%204122%2C%20C1188AAU%20CABA!5e0!3m2!1ses-419!2sar!4v1674141441169!5m2!1ses-419!2sar"
-                      width="500"
-                      height="250"
-                      loading="lazy"
-                      title="mapa"
-                      referrerPolicy="no-referrer-when-downgrade"
-                    ></iframe>
+                    {prod?.local === "PALERMO" && (
+                      <iframe
+                        className="mt-9 invert w-full contrast-75"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.2725695075255!2d-58.42743848427838!3d-34.59726848046116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcca7baf4da67b%3A0xad6e1d86c5c260e5!2sAv.%20C%C3%B3rdoba%204122%2C%20C1188AAU%20CABA!5e0!3m2!1ses-419!2sar!4v1674141441169!5m2!1ses-419!2sar"
+                        width="500"
+                        height="250"
+                        loading="lazy"
+                        title="mapa"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    )}
+
+                    {prod?.local === "COLEGIALES" && (
+                      <iframe
+                        className="mt-9 invert w-full contrast-75"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.960038039108!2d-58.456995000000006!3d-34.5798777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb5e74df67c99%3A0xb33c3407624da4db!2sGiribone%201041%2C%20C1427CAM%20CABA!5e0!3m2!1ses-419!2sar!4v1677199649300!5m2!1ses-419!2sar"
+                        width="500"
+                        height="250"
+                        loading="lazy"
+                        title="mapa"
+                        referrerPolicy="no-referrer-when-downgrade"
+                      ></iframe>
+                    )}
                   </div>
                 </div>
               </div>
