@@ -6,11 +6,11 @@
     "local": "COLEGIALES",
     "localFriendlyName": "Colegiales",
     "address": "Giribone 1041",
-    "participantsMin": 2,
+    "participantsMin": 3,
     "participantsMax": 6,
-    "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "difficulty": 8.5,
+    "ageLimit": 10,
+    "description": "Han sido llamados por el gerente del muy prestigioso Hotel Overlook para una entrevista de trabajo, el puesto a cubrir es el de conserje del hotel. ¿Serán capaces de superar la entrevista y sobrevivir?\n\n"
   },
   {
     "title": "Prohibido hablar",
@@ -21,9 +21,9 @@
     "address": "Giribone 1041",
     "participantsMin": 2,
     "participantsMax": 6,
-    "difficulty": 7,
+    "difficulty": 8,
     "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "description": "Lo que ocurrió aquí es un misterio… La temática de la sala la descubrís adentro, ¿Te animas a ingresar?.\n\n"
   },
   {
     "title": "La casa de la moneda",
@@ -58,11 +58,11 @@
     "local": "COLEGIALES",
     "localFriendlyName": "Colegiales",
     "address": "Giribone 1041",
-    "participantsMin": 3,
+    "participantsMin": 2,
     "participantsMax": 6,
-    "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "difficulty": 8,
+    "ageLimit": 10,
+    "description": "Londres, fin de siglo XIX.\n\nHan descubierto la casa de Jack el Destripador. Tienen la pista de que tiene a la última victima encerrada en su casa.\n\nTienen 60 minutos para intentar rescatarla y escapar con vida.\n\n"
   },
   {
     "title": "El juego del miedo",
@@ -71,11 +71,11 @@
     "local": "COLEGIALES",
     "localFriendlyName": "Colegiales",
     "address": "Giribone 1041",
-    "participantsMin": 2,
+    "participantsMin": 3,
     "participantsMax": 6,
-    "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "difficulty": 10,
+    "ageLimit": 14,
+    "description": "Despiertan en un lugar totalmente desconocido, las puertas están cerradas y no parece haber escapatoria. Enseguida descubren que es parte de una serie de juegos macabros para hacerlos reconsiderar en el valor de su vida y acciones. En 60 minutos se activará un gas mortífero que acabará con tu vida en unos pocos segundos.\n\n"
   },
   {
     "title": "El juego del miedo",
@@ -84,11 +84,11 @@
     "local": "COLEGIALES",
     "localFriendlyName": "Colegiales",
     "address": "Giribone 1041",
-    "participantsMin": 2,
+    "participantsMin": 3,
     "participantsMax": 6,
-    "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "difficulty": 10,
+    "ageLimit": 14,
+    "description": "Despiertan en un lugar totalmente desconocido, las puertas están cerradas y no parece haber escapatoria. Enseguida descubren que es parte de una serie de juegos macabros para hacerlos reconsiderar en el valor de su vida y acciones. En 60 minutos se activará un gas mortífero que acabará con tu vida en unos pocos segundos.\n\n"
   },
   {
     "title": "El orfanato",
@@ -97,11 +97,11 @@
     "local": "PALERMO",
     "localFriendlyName": "Palermo",
     "address": "Av. Córdoba 4265",
-    "participantsMin": 2,
+    "participantsMin": 3,
     "participantsMax": 6,
-    "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "difficulty": 8,
+    "ageLimit": 12,
+    "description": "Raquel y Carlos han heredado un orfanato abandonado. Tenían grandes planes para reformarlo hasta que su hijo Simón desapareció repentinamente sin dejar rastro.\n\nLa familia los ha contratado para investigar el paradero de Simón.\n\n¿Podrán encontrarlo?\n\n"
   },
   {
     "title": "El robo del siglo",
@@ -113,8 +113,8 @@
     "participantsMin": 2,
     "participantsMax": 6,
     "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "ageLimit": 10,
+    "description": "Son parte de una banda, con el plan más ambicioso de la historia Argentina, robar un banco, y escapar con todo el dinero por un túnel previamente construido, en 60 minutos entrara la policía y será el fin de ustedes como banda, y el comienzo de su vida en prisión.\n\n"
   },
   {
     "title": "El robo del siglo",
@@ -126,8 +126,8 @@
     "participantsMin": 2,
     "participantsMax": 6,
     "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "ageLimit": 10,
+    "description": "Son parte de una banda, con el plan más ambicioso de la historia Argentina, robar un banco, y escapar con todo el dinero por un túnel previamente construido, en 60 minutos entrara la policía y será el fin de ustedes como banda, y el comienzo de su vida en prisión.\n\n"
   },
   {
     "title": "Maldita fuga",
@@ -138,9 +138,9 @@
     "address": "Av. Córdoba 4265",
     "participantsMin": 2,
     "participantsMax": 6,
-    "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "difficulty": 9,
+    "ageLimit": 10,
+    "description": "Año 1930 en Buenos Aires, despiertan en una prisión venida a menos sin saber qué ha pasado. Encuentran pistas de antiguos prisioneros que podrían ayudarlos a escapar con vida, pero se dan cuenta que lo peor recien podría haber comenzado....\n\n"
   },
   {
     "title": "Encuentro paranormal",
@@ -152,7 +152,7 @@
     "participantsMin": 2,
     "participantsMax": 6,
     "difficulty": 7,
-    "ageLimit": 9,
-    "description": "Luego de haber realizado el atraco más grande y famoso del mundo, el profesor se pone en contacto con ustedes, para realizar un segundo golpe, esta vez a la Casa de la Moneda Argentina. Luego de un riguroso entrenamiento, su misión es escapar con el dinero antes de que llegue la policía.\n\n"
+    "ageLimit": 10,
+    "description": "Ustedes son caza fantasmas profesionales, deciden entrar a un hospital psiquiátrico abandonado en el cual se dice que nadie que ha entrado, logró salir con vida.  En 60 minutos deben resolver el misterio o se encontrarán con el mismo destino fatal que todos los que lo intentaron anteriormente.\n\n"
   }
 ]

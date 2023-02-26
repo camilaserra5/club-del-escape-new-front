@@ -71,9 +71,13 @@ const BookModal = (props: TextBooking) => {
 
   // const prod = data.find((p) => p.productId === props.slot.productId);
   useEffect(() => {
+    localStorage.clear();
     const product = data.find((p) => p.productId === props.slot.productId);
     setProd(product);
-    if (product) setQuantity(product.participantsMin);
+    if (product) {
+      setQuantity(product.participantsMin);
+      props.slot.quantity = product.participantsMin;
+    }
   }, [props]);
 
   return (

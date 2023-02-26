@@ -88,7 +88,11 @@ const RoomDescriptionModal = (props: Game) => {
                           className="ml-2 mr-3 text-amber-300"
                         />
                       </div>
-                      <div> Participantes: 2 a 6</div>
+                      <div>
+                        {" "}
+                        Participantes: {props.participantsMin} a{" "}
+                        {props.participantsMax}
+                      </div>
                     </div>
                   </div>
                   <div>
@@ -99,7 +103,7 @@ const RoomDescriptionModal = (props: Game) => {
                           className="ml-2 mr-3 text-amber-300"
                         />
                       </div>
-                      <div>Dificultad: 8/10</div>
+                      <div>Dificultad: {props.difficulty}/10</div>
                     </div>
                   </div>
                   <div>
@@ -110,12 +114,12 @@ const RoomDescriptionModal = (props: Game) => {
                           className="ml-2 mr-3 text-amber-300"
                         />
                       </div>
-                      <div>Edad: 9+</div>
+                      <div>Edad: {props.ageLimit}+</div>
                     </div>
                   </div>
                   <div>
                     <div className="flex flex-row flex-initial w-auto">
-                      <div >
+                      <div>
                         <FontAwesomeIcon
                           icon={faClock}
                           className="ml-2 mr-3 text-amber-300"

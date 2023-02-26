@@ -49,19 +49,24 @@ const FinishBooking = () => {
   const [slotId, setSlotId] = useState("");
 
   useEffect(() => {
-    console.log(english);
-    console.log(terms);
-    localStorage.setItem("slotId", slotId);
     localStorage.setItem("firstname", firstname);
     localStorage.setItem("lastname", lastname);
     localStorage.setItem("email", email);
     localStorage.setItem("phone", phone);
     localStorage.setItem("terms", JSON.stringify(terms));
     localStorage.setItem("english", JSON.stringify(english));
-  }, [slotId, firstname, lastname, email, phone, terms, english]);
+  }, [firstname, lastname, email, phone, terms, english]);
 
   useEffect(() => {
+    const savedSlotId = localStorage.getItem("slotId");
+    if (savedSlotId) setSlotId(savedSlotId);
+    const savedPrice = localStorage.getItem("price");
+    if (savedPrice) setPrice(parseFloat(savedPrice));
+  }, []);
+  
+  useEffect(() => {
     const hold = async () => {
+      if (localStorage.getItem("slotId")) return;
       const url = `https://club-del-escape-new-back.vercel.app/hold-slot`;
 
       const res = await fetch(url, {
@@ -83,6 +88,8 @@ const FinishBooking = () => {
       localStorage.setItem("eventId", slot.eventId);
       localStorage.setItem("participants", slot.quantity.toString());
       localStorage.setItem("productId", slot.productId);
+      localStorage.setItem("slotId", slotId);
+      localStorage.setItem("price", price);
     };
 
     hold();
@@ -173,7 +180,7 @@ const FinishBooking = () => {
                             </div>
                             <div>
                               <dt className="inline">
-                                {Moment(slot.startTime).format("HH:MM")}
+                                {Moment(slot.startTime).format("HH:mm")}
                               </dt>
                             </div>
                             <div>

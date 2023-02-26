@@ -25,6 +25,10 @@ const Success = () => {
   }, [location]);
 
   useEffect(() => {
+    localStorage.setItem("paymentId", paymentId);
+  }, [paymentId]);
+
+  useEffect(() => {
     const book = async () => {
       const url = `https://club-del-escape-new-back.vercel.app/create-reservation`;
       console.log(localStorage.getItem("eventId"));
@@ -47,6 +51,7 @@ const Success = () => {
       });
 
       const { hoa } = await res.json();
+      console.log(hoa);
     };
 
     book();
@@ -68,12 +73,14 @@ const Success = () => {
         <h1>
           PAGO EXITOSO: {paymentId} - {status}
         </h1>
-        <p>
-          A{localStorage.getItem("slotId")}D{localStorage.getItem("firstname")}D
-          {localStorage.getItem("lastname")}D{localStorage.getItem("email")}D{" "}
-          {localStorage.getItem("phone")}D D{localStorage.getItem("terms")}d{" "}
-          {localStorage.getItem("english")}
-        </p>
+        <h1>Su reserva ha sido confirmada!</h1>
+        <h1>SLOT ID: {localStorage.getItem("slotId")}</h1>
+        <h1>Nombre: {localStorage.getItem("firstname")}</h1>
+        <h1>Apellido: {localStorage.getItem("lastname")}</h1>
+        <h1>Mail: {localStorage.getItem("email")}</h1>
+        <h1>Telef: {localStorage.getItem("phone")}</h1>
+        <h1>Mail: {localStorage.getItem("slotId")}</h1>
+        <h1>ID pago: {paymentId}</h1>
       </>
     </Layout>
   );
